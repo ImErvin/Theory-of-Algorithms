@@ -3,8 +3,7 @@
 
 ### Task
 
-
-Write, from scratch, a function in Racket that uses a brute-force algorithm that takes a single positive integer and return true if the number is a prime and false otherwise. Call the function decide-prime.
+    Write, from scratch, a function in Racket that uses a brute-force algorithm that takes a single positive integer and return true if the number is a prime and false otherwise. Call the function decide-prime.
 
 ### Problem Breakdown
 
@@ -16,11 +15,10 @@ A prime number (or a prime) is a natural number greater than 1 that has no posit
 
 ##### Conditions for a Prime Number
 
-    1. The number must be a positive integer larger than 1
-    2. When a prime number is divided by another positive integer, the result will only be a positive integer when the prime number is divided by iteself and the number 1.
-
-When faced with the task above I can assume that this means checking every number 
+1. The number must be a positive integer larger than 1
+2. When a prime number is divided by another positive integer, the result will only be a positive integer when the prime number is divided by iteself and the number 1.
 
 ### Reference
 [1] https://en.wikipedia.org/wiki/Brute-force_search
+
 [2] https://en.wikipedia.org/wiki/Prime_number
