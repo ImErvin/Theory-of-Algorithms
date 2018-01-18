@@ -2,7 +2,7 @@
 ##### Solutions by Ervin Mamutov - G00311015
 
 #### Introduction
-This repository is used to store my solutions for several tasks for my "Theory of Algorithms" module in college. The aim of this module is to enhance my knowledge of algorithms, distinguish between and design "better" algorithms. 
+This repository is used to store my solutions for several tasks for my "Theory of Algorithms" module in college. The aim of this module is to teach me how to compare different models of computation, write computer programs using a selection of programming paradigms, analyse the complexity of an algorithm and identify difficult computational problems in everyday programming.
 
 I will actively add new material to this repository over the next 3 months (Starting 01/18).
 
