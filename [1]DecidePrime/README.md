@@ -3,7 +3,8 @@
 
 ### Task
 
-    Write, from scratch, a function in Racket that uses a brute-force algorithm that takes a single positive integer and return true if the number is a prime and false otherwise. Call the function decide-prime.
+    Write, from scratch, a function in Racket that uses a brute-force algorithm that takes a single positive integer and return true if the number is a prime and false otherwise. 
+    Call the function decide-prime.
 
 ### Problem Breakdown
 
