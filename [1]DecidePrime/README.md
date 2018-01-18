@@ -24,6 +24,9 @@ This problem asks me to determine if the number being passed into the function i
 
 Obviously if it is divisable by another number to produce a positive natural number, then it is not a prime number as it breaks one of the conditions above.
 
+#### Problem Solving
+I started off by seeing if I could create a function that could return true or false if two numbers that are supplied as parameters divide to create a whole number.
+
 ### Reference
 [1] https://en.wikipedia.org/wiki/Brute-force_search
 
