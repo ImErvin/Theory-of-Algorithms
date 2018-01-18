@@ -19,6 +19,11 @@ A prime number (or a prime) is a natural number greater than 1 that has no posit
 1. The number must be a positive integer larger than 1
 2. When a prime number is divided by another positive integer, the result will only be a positive integer when the prime number is divided by iteself and the number 1.
 
+#### Further Examination
+This problem asks me to determine if the number being passed into the function is a prime number *using brute force*. To me this means I will need to check every number between 2 and N (where N is the number in investigation), and check if it divides into N to produce another positive natural number.
+
+Obviously if it is divisable by another number to produce a positive natural number, then it is not a prime number as it breaks one of the conditions above.
+
 ### Reference
 [1] https://en.wikipedia.org/wiki/Brute-force_search
 
