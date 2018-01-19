@@ -26,13 +26,22 @@ Obviously if it is divisable by another number to produce a positive natural num
 
 #### Problem Solving
 I started off by seeing if I could create a function that could return true or false if two numbers that are supplied as parameters divide to create a whole number.
+```scheme
+;Trying to see if I can create a function that divides two integers and returns t or f
+; if a number is whole or not
+(define (tester g n) (exact-integer? (/ g n)))
+
+(tester 1 3)
+```
 
 Next I wanted to see if I could solve this problem with another programming langauge to envision the layout of the algorithm.
+
+Javascript Version
 ```javascript
 var x = 37;
 
 function decideprime(n){
-	if(n == x){
+    if(n == x){
 		console.log("Not prime")
 		return false;
     }
@@ -45,7 +54,22 @@ function decideprime(n){
 
 decideprime(2)
 ```
+
 This code seemed to work fine and so my next step was to replicate it in racket.
+
+Racket Version
+```scheme
+(define g 37)
+(define (decide-prime n)
+  (if (= g n)
+     #t
+  (if(exact-integer? (/ g n))
+     #f
+     (decide-prime(+ n 1)))))
+
+(decide-prime 2)
+```
+Now the task asks me to create function that takes the investigated integer as a parameter and returns true or false, so I will need to re-work my algorithm a little bit more.
 
 
 ### Reference
