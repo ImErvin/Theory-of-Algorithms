@@ -27,6 +27,27 @@ Obviously if it is divisable by another number to produce a positive natural num
 #### Problem Solving
 I started off by seeing if I could create a function that could return true or false if two numbers that are supplied as parameters divide to create a whole number.
 
+Next I wanted to see if I could solve this problem with another programming langauge to envision the layout of the algorithm.
+```javascript
+var x = 37;
+
+function decideprime(n){
+	if(n == x){
+		console.log("Not prime")
+		return false;
+    }
+	if(x/n != Math.floor(x/n)){
+		decideprime(n+1)
+    }else{
+		console.log("Is prime")
+    }
+}
+
+decideprime(2)
+```
+This code seemed to work fine and so my next step was to replicate it in racket.
+
+
 ### Reference
 [1] https://en.wikipedia.org/wiki/Brute-force_search
 
