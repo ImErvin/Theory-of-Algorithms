@@ -1,5 +1,5 @@
 ### Brute-Force Prime Number Distinguisher
-##### Solution by Ervin Mamutov - G00311015
+##### Solution by Ervin Mamutov - github.com/imervin
 
 ### Task
 
@@ -34,9 +34,9 @@ I started off by seeing if I could create a function that could return true or f
 (tester 1 3)
 ```
 
-Next I wanted to see if I could solve this problem with another programming langauge to envision the layout of the algorithm.
+Next I wanted to see if I could solve this problem with another programming langauge to invision the layout of the algorithm.
 
-Javascript Version
+*Javascript Version*
 ```javascript
 var x = 37;
 
@@ -57,7 +57,7 @@ decideprime(2)
 
 This code seemed to work fine and so my next step was to replicate it in racket.
 
-Racket Version
+*Racket Version*
 ```scheme
 (define g 37)
 (define (decide-prime n)
@@ -70,6 +70,25 @@ Racket Version
 (decide-prime 2)
 ```
 Now the task asks me to create function that takes the investigated integer as a parameter and returns true or false, so I will need to re-work my algorithm a little bit more.
+
+I decided to go for a "User" function - kind of like exposing a public function to work with private functions that will only accept one integer (the number to be investigated for prime), and within that user function I will make the call to the recursive function. I also took into consideration if the number is less than 2 because any number before 2 can be considered as "not a prime".
+
+Here is what I ended up with in the end.
+```scheme
+(define (recurFunc g n)
+  (if (= g n)
+     #t
+  (if(exact-integer? (/ g n))
+     #f
+     (recurFunc g  (+ n 1) ))))
+
+(define (decide-prime n)
+  (if (< n 2)
+      #f
+  (if (not (recurFunc n 2)) #f #t) ))
+```
+
+Further documentation on the code can be found in the "decideprime.rkt" file in this repository.
 
 
 ### Reference
