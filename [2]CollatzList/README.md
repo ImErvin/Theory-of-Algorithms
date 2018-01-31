@@ -65,6 +65,9 @@ l
 (append l (cons 1 null)) ; Successfully got rid of the . using a cons of 1 and null
 ```
 
+Now that I have a fair idea of how to work with racket lists I'm going to attempt to recreate the javascript function in racket.
+
+
 ### Reference
 [1] https://en.wikipedia.org/wiki/Collatz_conjecture#Visualizations
 
