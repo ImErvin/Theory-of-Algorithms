@@ -67,6 +67,34 @@ l
 
 Now that I have a fair idea of how to work with racket lists I'm going to attempt to recreate the javascript function in racket.
 
+```scheme
+#lang racket
+(define listOfNs '())
+
+(define (collatzlist n)
+  (append listOfNs n)
+  (if (<= n 1)
+      listOfNs
+      (if (odd? n)
+          (cons n (collatzlist (odd n)))
+          (cons n (collatzlist (even n))))))
+          
+
+(define (odd n)
+  (+ (* 3 n) 1)
+ )
+
+(define (even n)
+  (/ n 2)
+ )
+
+(odd 4)
+
+(even 4)
+(collatzlist 100)
+```
+This method worked correctly for me but I was told I could not use "append" functionality. After consulting with my lecturer I was told I should not declare a list at the top and then add to it, that was the imperative way and this is functional programming! He mentioned that using cons was the better way of doing it - I was also asked to use modulo to determine if a number is odd instead of using "odd?"
+
 
 ### Reference
 [1] https://en.wikipedia.org/wiki/Collatz_conjecture#Visualizations
