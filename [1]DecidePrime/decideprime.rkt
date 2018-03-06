@@ -26,8 +26,9 @@
 ;
 ; References
 ; Made no adaptations of other code - apart from using racket documentation for syntax etc.
+; ------------------------------------------------------------
 
-;[1]
+; [1]
 (define (recurFunc g n)
   (if (= g n)
      #t
@@ -35,7 +36,7 @@
      #f
      (recurFunc g  (+ n 1) ))))
 
-;[2]
+; [2]
 (define (decide-prime n)
   (if (< n 2)
       #f
