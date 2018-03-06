@@ -17,7 +17,7 @@
 This conjecture is named after Lothar Collatz who introduced the concept in 1937. The algorithm is: take any positive integer n. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half the previous term. Otherwise, the next term is 3 times the previous term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1. [1]
 
 #### Further Examination
-My takeback from this problem is to be able to create a recursive function that will take a value N, add this number to a list. Once the number is saved in this list, I will need to perform a different operation on the number depending on if the number is odd or even.
+My take back from this problem is to be able to create a recursive function that will take a value N, add this number to a list. Once the number is saved in this list, I will need to perform a different operation on the number depending on if the number is odd or even.
 
 The formula provided is:
 
@@ -49,7 +49,7 @@ function collatzlist(n){
 }
 ```
 
-The code above seems to work pretty well but my concern now is it in good practice in functional programming to do everything within one function or would it be a better idea to separate concern e.g collatzlist will call another function called odd which would take in an arguement perform an operation on that argument (e.g return 3 * arguement + 1) and return that number back to the collatzlist function for recursion.
+The code above seems to work pretty well but my concern now is it in good practice in functional programming to do everything within one function or would it be a better idea to separate concern e.g collatzlist will call another function called odd which would take in an argument perform an operation on that argument (e.g return 3 * argument + 1) and return that number back to the collatzlist function for recursion.
 
 After a little bit of research I found an answer on stackexchange [2] which said that "If the function is made of sequential steps aimed to a final result, then no need to split it, even if it's relatively long. But if the functions does one thing, then another, then another and then another, with conditions, logically separated blocks, etc., it should be split. As a result of that logic, functions should be usually small."
 
@@ -68,7 +68,6 @@ l
 Now that I have a fair idea of how to work with racket lists I'm going to attempt to recreate the javascript function in racket.
 
 ```scheme
-#lang racket
 (define listOfNs '())
 
 (define (collatzlist n)
@@ -78,7 +77,6 @@ Now that I have a fair idea of how to work with racket lists I'm going to attemp
       (if (odd? n)
           (cons n (collatzlist (odd n)))
           (cons n (collatzlist (even n))))))
-          
 
 (define (odd n)
   (+ (* 3 n) 1)
@@ -93,7 +91,34 @@ Now that I have a fair idea of how to work with racket lists I'm going to attemp
 (even 4)
 (collatzlist 100)
 ```
-This method worked correctly for me but I was told I could not use "append" functionality. After consulting with my lecturer I was told I should not declare a list at the top and then add to it, that was the imperative way and this is functional programming! He mentioned that using cons was the better way of doing it - I was also asked to use modulo to determine if a number is odd instead of using "odd?"
+This method worked correctly for me but I was told I could not use "append" functionality. After consulting with my lecturer I was told I should not declare a list at the top and then add to it, that was the imperative way and this is functional programming! He mentioned that using cons was the better way of doing it - I was also asked to use modulo to determine if a number is odd instead of using "odd?".
+
+After looking back on the work I have done to construct a list, I figured the only way to create a list was to dynamically nest a cons in a recursive function and return the result at the end of the loop. 
+
+The result I managed to come up with was:
+```scheme
+#lang racket
+(define (collatzlist n)
+  (cons n (if (= (- n 1) 0)
+              null
+              (if (= (modulo n 2) 0)
+                  (collatzlist (even n))
+                  (collatzlist (odd n))))))
+
+(define (even n)
+  (/ n 2)
+ )
+
+(define (odd n)
+  (+ (* 3 n) 1)
+ )
+
+(collatzlist 99)
+```
+
+I'm quite happy with this solution, It seems to be pretty minimalistic and functional.
+
+Further documentation on the code can be found in the "collatzlist.rkt" file in this repository.
 
 
 ### Reference
