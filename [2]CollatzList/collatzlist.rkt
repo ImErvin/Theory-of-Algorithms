@@ -1,12 +1,11 @@
 #lang racket
 
 (define (collatzlist n)
-  (print n)
   (cons n (if (= (- n 1) 0)
               null
-              (if (odd? n)
-                  (collatzlist (odd n))
-                  (collatzlist (even n))))))
+              (if (= (modulo n 2) 0)
+                  (collatzlist (even n))
+                  (collatzlist (odd n))))))
           
 
 (define (odd n)
