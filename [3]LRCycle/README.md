@@ -1,20 +1,28 @@
-### Collatz Conjecture
+### Left & Right Cycle
 ##### Solution by Ervin Mamutov - github.com/imervin
 
 ### Task
 
-    Write, from scratch, a function in Racket that takes a positive integer n0 as input
-    and returns a list by recursively applying the following operation, starting with the
-    input number.
+    Write, from scratch, two functions in Racket. The first is called lcycle. It takes a list as input and returns the list cyclically shifted one place to the left. The second is called rcycle, and it shifts the list cyclically shifted one place to the right.
 
-    End the recursion when (or if) the number becomes 1. Call the function collatz-list.
-    So, collatz-list should return a list whose first element is n0, the second element
-    is n1, and so on.
+    For Example:
+```scheme
+(lcycle (list 1 2 3 4 5))
+'(2 3 4 5 1)
+
+(rcycle (list 1 2 3 4 5))
+'(5 1 2 3 4)
+```
+    
 
 ### Problem Breakdown
 
-#### What is the Collatz Conjecture?
-This conjecture is named after Lothar Collatz who introduced the concept in 1937. The algorithm is: take any positive integer n. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half the previous term. Otherwise, the next term is 3 times the previous term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1. [1]
+#### What is the problem asking of me?
+There are two functions the problem is asking me to create. The first function is a left cycle, where the first index of the list will be moved to the end of the list. The second function is a right cycle, where the last index of a list will be moved to the start of the list.
+
+This seems like a relatively easy problem in any imperative language, but when I'm working with functional programming it seems to be a much more difficult problem.
+
+After a little bit of research on the racket documentation [1] and revising code from Ian McLoughlin's Github [2] - I found that because of the way lists are created (collection of pairs), you may only get the first element (car) and last element (cdr) of any given pair be it in a list or not.
 
 #### Further Examination
 My take back from this problem is to be able to create a recursive function that will take a value N, add this number to a list. Once the number is saved in this list, I will need to perform a different operation on the number depending on if the number is odd or even.
@@ -121,6 +129,6 @@ Further documentation on the code can be found in the "collatzlist.rkt" file in 
 
 
 ### Reference
-[1] https://en.wikipedia.org/wiki/Collatz_conjecture#Visualizations
+[1] https://docs.racket-lang.org/reference/pairs.html
 
-[2] https://softwareengineering.stackexchange.com/questions/308108/when-is-it-appropriate-to-make-a-separate-function-when-there-will-only-ever-be
+[2] https://github.com/theory-of-algorithms/example-scheme/blob/master/lists.rkt
