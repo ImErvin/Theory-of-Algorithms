@@ -1,3 +1,5 @@
+; maj - Written by Ervin Mamutov | github.com/imervin
+
 #lang racket
 
 (define (maj x y z)

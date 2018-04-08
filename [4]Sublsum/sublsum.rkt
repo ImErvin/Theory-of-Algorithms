@@ -1,3 +1,5 @@
+; sublsum - Written by Ervin Mamutov | github.com/imervin
+
 #lang racket
 
 (define (sublsum x)

@@ -1,3 +1,5 @@
+; chse - Written by Ervin Mamutov | github.com/imervin
+
 #lang racket
 
 (define (chse x y z)

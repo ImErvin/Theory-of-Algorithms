@@ -1,3 +1,5 @@
+; sod2 - Written by Ervin Mamutov | github.com/imervin
+
 #lang racket
 
 (define (sod2 x y z)

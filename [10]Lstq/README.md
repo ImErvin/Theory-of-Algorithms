@@ -29,40 +29,47 @@ This problem does not specify to write a function from *scratch* - so I'm making
 #### Further Examination
 Looking deeper into this function I figured I could probably use a map function to apply the distance function to the corresponding elements.
 
+```Scheme
+(map (lambda (x y)
+       (* (- x y) (- x y)))
+     (list 4.5 5.1 6.2 7.8)
+     (list 1.1 -0.1 6.1 3.8))
+
+> '(11.559999999999999
+    27.039999999999992
+    0.010000000000000106
+    16.0)
+```
+Seems to be working correctly.
 
 #### Problem Solving
-After a bit of thinking I figured I could use the odd? function to determine if the number of 1s odd or even. Then I remembered I should use modulo instead so I started creating my map function.
-
-My idea for the lambda function was to check if the sum of x y z % 2 = 0. If it did then return a 0 as this indicates the sum of 1s was even, or else return 1.
-This worked with no instances of 1 too because 0 % 2 = 0.
-
-I had to be careful of the order I wrote the if statement as 2 % 0 would cause an error.
-```Scheme
-(map (lambda (x y z)
-       (if (= (modulo (+ x y z) 2) 0)
-           1
-           0)) (list 0 0 0 0 1 1 1 1) 
-               (list 0 0 1 1 0 0 1 1) 
-               (list 0 1 0 1 0 1 0 1))
-
-> '(0 1 1 0 1 0 0 1)
-```
-This worked and just like the previous two questions I simply had to wrap this map function in a defined function.
+Now that I have a list of values, I need to create a method of summing all the values together and returning the total.
 
 ```Scheme
-(define (sod2 x y z)
-  (map (lambda (x y z)
-       (if (= (modulo (+ x y z) 2) 0)
-           0
-           1)) x y z))
-
-(sod2 (list 0 0 0 0 1 1 1 1) 
-       (list 0 0 1 1 0 0 1 1) 
-       (list 0 1 0 1 0 1 0 1))
-
-> '(0 1 1 0 1 0 0 1)
+(define (sum x)
+  (if (null? x)
+      0
+      (+ (car x) (sum (cdr x)))))
 ```
-I was happy with this solution
+This produces "54.61" when I pass in the list produced in the map function.
+
+All I need to do now is wrap the map function into a defined function.
+
+```Scheme
+(define (sum x)
+  (if (null? x)
+      0
+      (+ (car x) (sum (cdr x)))))
+
+(define (lstq x y)
+  (sum (map (lambda (x y)
+       (* (- x y) (- x y))) x y)))
+
+(lstq (list 4.5 5.1 6.2 7.8) (list 1.1 -0.1 6.1 3.8))
+
+> 54.61
+```
+This produced what I expected - I could have also used the apply function instead of sum. I was happy with this solution
 
 ### Reference
 

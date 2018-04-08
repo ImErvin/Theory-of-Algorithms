@@ -1,3 +1,5 @@
+; hammingdistance - Written by Ervin Mamutov | github.com/imervin
+
 #lang racket
 
 (define helper

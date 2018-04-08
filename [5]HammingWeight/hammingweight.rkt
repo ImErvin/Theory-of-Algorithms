@@ -1,5 +1,6 @@
-#lang racket
+; hammingweight - Written by Ervin Mamutov | github.com/imervin
 
+#lang racket
 
 (define (hamming-weight x)
   (length (filter positive? x)))
