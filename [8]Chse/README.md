@@ -63,5 +63,4 @@ I was surprised that I solved this problem in one map function, now I just had t
 I was happy with this solution.
 
 ### Reference
-[1] https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29
 
