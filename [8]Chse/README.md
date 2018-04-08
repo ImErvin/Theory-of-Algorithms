@@ -27,9 +27,40 @@ I.E: if the (car x) is 1 then I want to take the (car y) and put it onto a new l
 This problem does not specify to write a function from *scratch* - so I'm making the assumption that I can use any racket pre-built function.
 
 #### Further Examination
-For this problem
+The wording is of the problem was hard for me to grasp but I figured this question is going to be a map related question like before because I'm taking three lists as inputs and returning a new list.
 
 #### Problem Solving
+After some thinking and planning on paper of how this problem works - I came up with the solution that during a lambda loop I should check the value of x.
+
+If the value of x is 1, then I can return y or else return z.
+
+```Scheme
+(map (lambda (x y z)
+       (if (= 1 x)
+           y
+           z))
+     (list 0 0 0 0 1 1 1 1) 
+     (list 0 0 1 1 0 0 1 1) 
+     (list 0 1 0 1 0 1 0 1))
+    
+> '(0 1 0 1 0 0 1 1)
+```
+I was surprised that I solved this problem in one map function, now I just had to wrap the map around a defined function.
+
+```Scheme
+(define (chse x y z)
+  (map (lambda (x y z)
+       (if (= 1 x)
+           y
+           z)) x y z))
+
+(chse (list 0 0 0 0 1 1 1 1) 
+      (list 0 0 1 1 0 0 1 1) 
+      (list 0 1 0 1 0 1 0 1))
+
+> '(0 1 0 1 0 0 1 1)
+```
+I was happy with this solution.
 
 ### Reference
 [1] https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29
