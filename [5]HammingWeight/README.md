@@ -27,9 +27,25 @@ From a racket perspective I need to be able to take a list of binary numbers and
 This problem does not specify to write a function from *scratch* - so I'm making the assumption that I can use any racket pre-built function.
 
 #### Further Examination
-I figured for this problem I could use 
+I figured for this problem I could use a counter that adds 1 for every iteration of the recursive loop. After playing around with racket I figured out I could simply add a +1 and when the application finishes running it returns the total.
+
+```Scheme
+(define (hamming-weight x)
+  (if (null? x)
+      +0
+  (+ 1 (hamming-weight (cdr x)))))
+
+
+(hamming-weight '(1 0 0 0))
+> 4
+```
+
+At this point I figured its just a matter of a couple of if/else statements to get the result I wanted.
 
 #### Problem Solving
+Adding to what I have above I wanted to add a nested if to check if the x being passed in was a 1 or a 0 and add a counter of 1 or 0 based on that.
+
+
 
 ### Reference
 [1] https://en.wikipedia.org/wiki/Hamming_weight
