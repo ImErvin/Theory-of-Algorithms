@@ -45,7 +45,29 @@ At this point I figured its just a matter of a couple of if/else statements to g
 #### Problem Solving
 Adding to what I have above I wanted to add a nested if to check if the x being passed in was a 1 or a 0 and add a counter of 1 or 0 based on that.
 
+```Scheme
+(define (hamming-weight x)
+  (if (null? x)
+      +0
+      (if (= 0 (car x))
+          (hamming-weight(cdr x))
+          (+ 1 (hamming-weight(cdr x))))))
 
+(hamming-weight '(1 0 1 0))
+> 2
+```
+This function worked and produced the number I expected, but I wasn't happy with this solution and felt like I could make it a lot cleaner by using some predefined functions in racket.
+
+I remembered filter from the previous task, since 0 is neither negative nor positive, it's the middle ground that determines if a number is negative or positive, I could filter the list for positive numbers and then simply get the length of it.
+
+```Scheme
+(define (hamming-weight x)
+  (length (filter positive? x)))
+
+(hamming-weight '(1 0 1 0))
+> 2
+```
+This was a much cleaner solution and I was happy with this one.
 
 ### Reference
 [1] https://en.wikipedia.org/wiki/Hamming_weight
