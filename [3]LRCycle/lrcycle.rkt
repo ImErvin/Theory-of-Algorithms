@@ -1,12 +1,27 @@
 #lang racket
 
 
-(define (test n)
-  (test1 (cdr n) (cons (car n) null)))
+(define (lcycle n)
+  (combine (cdr n) (cons (car n) null)))
 
-(define (test1 n o)
+(define (rcycle n)
+  (combine (last n) (first n)))
+
+(define (last n)
+  (if (null? (cdr n))
+      n
+      (last (cdr n))))
+
+(define (first n)
+  (cons (car n) (if (null? (cdr (cdr n)))
+                    null
+                    (first (cdr n)))))
+
+(define (combine n o)
   (if (null? n)
       o
-      (cons (car n) (test1 (cdr n) o))))
+      (cons (car n) (combine (cdr n) o))))
 
-(test '(1 2 3 4 5))
+(lcycle '(1 2 3 4 5))
+
+(rcycle '(1 2 3 4 5))

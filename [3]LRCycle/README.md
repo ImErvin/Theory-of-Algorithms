@@ -49,7 +49,7 @@ I immediately figured I could repeat *(cdr)* 2 more times to return the very las
 
 > '(4)
 ```
-To my surprise *(cdr)* returned a list/pair even when it was just a single number. I checked to see if it was producing a pair/list using *(pair? ..)*/*(list? ..)*. I was not able to find material as to why this was happening but I kind of got that this could be used to reconstruct a list.
+To my surprise *(cdr)* returned a list/pair even when it was just a single number. I checked to see if it was producing a pair/list using *(pair? ..)*/*(list? ..)*. I was not able to find material as to why this was happening but I kind of got that this could be used to reconstruct a list or I could use *(car)* on it to turn it into a single number.
 
 I then wanted to see if I could have a control for a recursive loop for reconstructing a list. After some reading on the racket documentation [1] I figured I could check to see if the output was *(null? ..)* if so it means I have reached the end of the - this could be used to stop a recursive call.
 
@@ -57,6 +57,7 @@ At this point I figured I had enough of ammo to tackle the problem.
 
 
 #### Problem Solving
+##### LCYCLE
 I started off by trying to figure out how to do lcycle first. After a lot of a work around attempting to get it done in one function without using append I figured it to be impossible (to my knowledge atleast).
 
 I started off by trying to create a function that will recursively delete a list till it's '() (or null).
@@ -105,6 +106,42 @@ I built onto the concept from task 2 using the logic of depreciating the list on
 > '(2 3 4 5 1)
 ```
 I passed in the elements apart from the first element as n and the first element paired with null as o. Instead of simply deleting one element at a time, I used cons to add onto a list and then delete and repeat. At the final element, simply insert the first element of the list (o) to the end of the list.
+
+##### RCYCLE
+For the Rcycle I figured I needed the last element to be the be pushed onto the start of the list so I had to retrieve the last element.
+
+This was an easy task to solve as in the Lcycle, to check if the program was at the last item I needed to simply check if n was null. Therefore if the cdr of n was null, that will make it the second last element, so I can return n at that point.
+```Scheme
+(define (test2 n)
+  (if (null? (cdr n))
+      n
+      (test2 (cdr n))))
+
+(test2 '(1 2 3 4 5))
+> '(5)
+```
+
+Now that I have the first element of the new list, I need have to figure out how to remove the last element of the list and join that list to the first element.
+
+For this I think if I can return a list without the last element I will be a step closer as joining the new first element to the list without the last element will produce what I want.
+```Scheme
+(define (test3 n)
+  (cons (car n) (if (null? (cdr (cdr n)))
+                    null
+                    (test3 (cdr n)))))
+
+(test3 '(1 2 3 4 5))
+> '(1 2 3 4)
+```
+Now that I have two lists I can join them using the same method as lcycle.
+```Scheme
+(define (test4 n)
+  (test1 (test2 n) (test3 n)))
+
+(test4 '(1 2 3 4 5))
+> '(5 1 2 3 4)
+```
+I am happy with the result, I wish I was able to do it in one nifty little function for both lcycle and rcycle but I could not come up with a way for it. This was the only way I could see of doing it after breaking the problem down into smaller steps.
 
 ### Reference
 [1] https://docs.racket-lang.org/reference/pairs.html
