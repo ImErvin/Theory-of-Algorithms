@@ -9,5 +9,11 @@
 (null? (cdr (cdr (cdr (cdr '(1 2 3 4))))))
 (null? (cdr (list 1 1)))
 
+(define (test n)
+  (print n)
+  (if (null? n)
+      n
+      (test (cdr n))))
+
 ;(define (test n)
   

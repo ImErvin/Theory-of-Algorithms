@@ -47,7 +47,7 @@ I immediately figured I could repeat *(cdr)* 2 more times to return the very las
 ```scheme
 (cdr (cdr (cdr '(1 2 3 4))))
 
->'(4)
+> '(4)
 ```
 To my surprise *(cdr)* returned a list/pair even when it was just a single number. I checked to see if it was producing a pair/list using *(pair? ..)*/*(list? ..)*. I was not able to find material as to why this was happening but I kind of got that this could be used to reconstruct a list.
 
@@ -57,6 +57,54 @@ At this point I figured I had enough of ammo to tackle the problem.
 
 
 #### Problem Solving
+I started off by trying to figure out how to do lcycle first. After a lot of a work around attempting to get it done in one function without using append I figured it to be impossible (to my knowledge atleast).
+
+I started off by trying to create a function that will recursively delete a list till it's '() (or null).
+
+```Scheme
+(define (test n)
+  (print n)
+  (if (null? n)
+      n
+      (test (cdr n))))
+
+(test '(1 2 3 4 5))
+> '(1 2 3 4 5)'(2 3 4 5)'(3 4 5)'(4 5)'(5)'()'()
+```
+This worked but I didn't quite know where to go from here for a while, I figured maybe I could simply use *(cons)* to simply:
+```Scheme
+(define (test n)
+  (cons (cdr n) (car n)))
+
+(test '(1 2 3 4 5))
+> ((2 3 4 5) . 1)
+```
+I had a pesky ".1" so I paired the *(car)* with null to produce:
+```Scheme
+(define (test n)
+  (cons (cdr n) (cons (car n) null)))
+
+(test '(1 2 3 4 5))
+> ((2 3 4 5) 1)
+```
+This was closer to what I wanted but this produced a list within a list.. I researched and found that I could *(flatten)* the list but I was told that was the easy way out.
+
+I was very stuck for what I could do from here till I figured I could take the two lists and flatten them myself by taking the concept of creating a list on the fly from [task 2](https://github.com/ImErvin/Theory-of-Algorithms/tree/master/%5B2%5DCollatzList).
+
+I built onto the concept from task 2 using the logic of depreciating the list one element at a time as seen in the first "test" function under the **Problem Solving** heading above.
+```Scheme
+(define (test n)
+  (test1 (cdr n) (cons (car n) null)))
+
+(define (test1 n o)
+  (if (null? n)
+      o
+      (cons (car n) (test1 (cdr n) o))))
+
+(test '(1 2 3 4 5))
+> '(2 3 4 5 1)
+```
+I passed in the elements apart from the first element as n and the first element paired with null as o. Instead of simply deleting one element at a time, I used cons to add onto a list and then delete and repeat. At the final element, simply insert the first element of the list (o) to the end of the list.
 
 ### Reference
 [1] https://docs.racket-lang.org/reference/pairs.html
