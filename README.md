@@ -7,7 +7,7 @@ This repository is used to store my solutions for several tasks for my "Theory o
 I will actively add new material to this repository over the next 3 months (Starting 01/18).
 
 ### How to run
-To run the solutions I have provided you will need to ensure that you have [Racket](https://racket-lang.org/) installed locally. To do this simply click on "Racket" and follow their **Download** and install process.
+To run the solutions I have provided you will need to ensure that you have [Racket](https://racket-lang.org/) installed locally. To do this simply click on "Racket" and follow their **Download and Install** process.
 
 Once Racket is installed you can simply clone this repository locally.
 ```bash
@@ -19,4 +19,4 @@ Once Racket is installed you can simply clone this repository locally.
 ``` 
 
 Now simply open any of the solutions in DrRacket and run the scripts.
-If you have any issues with running the scripts please contact me github.
+If you have any issues with running the scripts please contact me on github.
